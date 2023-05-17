@@ -37,5 +37,12 @@ namespace SM.Integration.Application.ViewModels
         [Display(Name = "Estoque")]
         [Required(ErrorMessage = "Estoque do Produto obrigatório.")]
         public int Stock { get; set; }
+
+        public ICollection<SupplierViewModel>? SupplierViewModels { get; set; }
+        public ICollection<CategoryViewModel>? CategoryViewModels { get; set; }
+
+        public SupplierViewModel SupplierViewModel { get; set; }
+        public CategoryViewModel CategoryViewModel { get; set; }
+
     }
 }

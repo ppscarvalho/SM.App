@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SM.Integration.Application.Htpp.Category;
 using SM.Integration.Application.Interfaces;
+using SM.Integration.Application.ViewModels;
 
 namespace SM.App.Controllers
 {
     public class ProductController : Controller
     {
-
         private readonly IProductService _productService;
-
-        public ProductController(IProductService productService)
+        private readonly ICategoryClient _categoryClient;
+        public ProductController(IProductService productService, ICategoryClient categoryClient)
         {
             _productService = productService;
+            _categoryClient = categoryClient;
         }
 
 
@@ -29,18 +31,35 @@ namespace SM.App.Controllers
         }
 
         // GET: ProductController/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var supplier = await _productService.GetAllSupplier();
+            var category = await _categoryClient.GetAllCategory();
+            var product = new ProductViewModel
+            {
+                SupplierViewModels = supplier.ToList(),
+                CategoryViewModels = category.ToList()
+            };
+
+            return View(product);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(ProductViewModel productViewModel)
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View();
+
+                productViewModel.PurchaseValue /= 100.0M;
+                productViewModel.SaleValue /= 100.0M;
+                productViewModel.ProfitMargin /= 100.0M;
+
+                var result = await _productService.AddProduct(productViewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

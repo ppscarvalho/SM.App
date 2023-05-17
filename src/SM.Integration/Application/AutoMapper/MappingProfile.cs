@@ -2,6 +2,7 @@
 using SM.Integration.Application.ViewModels;
 using SM.MQ.Models.Category;
 using SM.MQ.Models.Product;
+using SM.MQ.Models.Supplier;
 
 namespace SM.Integration.Application.AutoMapper
 {
@@ -13,7 +14,13 @@ namespace SM.Integration.Application.AutoMapper
             CreateMap<CategoryViewModel, ResponseCategoryOut>().ReverseMap();
 
             // Product
-            CreateMap<ProductViewModel, ResponseProductOut>().ReverseMap();
+            CreateMap<ProductViewModel, ResponseProductOut>()
+                .ForMember(dest => dest.ResponseCategoryOut, act => act.MapFrom(src => src.CategoryViewModel))
+                .ForMember(dest => dest.ResponseSupplierOut, act => act.MapFrom(src => src.SupplierViewModel))
+                .ReverseMap();
+
+            // Supplier
+            CreateMap<SupplierViewModel, ResponseSupplierOut>().ReverseMap();
         }
     }
 }

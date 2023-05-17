@@ -7,7 +7,8 @@ namespace SM.Integration.Application.Interfaces
     {
         Task<ProductViewModel> GetProductById(Guid id);
         Task<IEnumerable<ProductViewModel>> GetAllProduct();
-        Task<ResponseOut> AddProduct(ProductViewModel categoriaViewModel);
-        Task<ResponseOut> UpdateProduct(ProductViewModel categoriaViewModel);
+        Task<ResponseOut> AddProduct(ProductViewModel productViewModel);
+        Task<ResponseOut> UpdateProduct(ProductViewModel productViewModel);
+        Task<IEnumerable<SupplierViewModel>> GetAllSupplier();
     }
 }

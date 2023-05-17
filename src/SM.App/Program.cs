@@ -16,6 +16,7 @@ const int timeWait = 30;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<HttpCategoryDelegatingHandler>();
 
 builder.Services.AddHttpClient<ICategoryClient, CategoryClient>()
       .AddHttpMessageHandler<HttpCategoryDelegatingHandler>()
@@ -33,7 +34,8 @@ var builderMQ = new BuilderBus(builder.Configuration["RabbitMq:ConnectionString"
     Publishers = new HashSet<IPublisher>
                 {
                     new Publisher<RequestIn>(queue: builder.Configuration["RabbitMq:ConsumerCategory"]),
-                    new Publisher<RequestIn>(queue: builder.Configuration["RabbitMq:ConsumerProduct"])
+                    new Publisher<RequestIn>(queue: builder.Configuration["RabbitMq:ConsumerProduct"]),
+                    new Publisher<RequestIn>(queue: builder.Configuration["RabbitMq:ConsumerSupplier"])
                 },
 
     Retry = new Retry(retryCount: 3, interval: TimeSpan.FromSeconds(60))

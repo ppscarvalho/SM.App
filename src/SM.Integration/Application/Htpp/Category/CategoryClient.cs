@@ -17,7 +17,7 @@ namespace SM.Integration.Application.Htpp.Category
 
         public async Task<IEnumerable<CategoryViewModel>> GetAllCategory()
         {
-            var result = await Get($"{_apisOptions.BaseUrlCategory}/api/Categoria/lista-categorias");
+            var result = await Get($"{_apisOptions.BaseUrlCategory}/api/Category/GetAllCategory");
             return result.DeserializeObject<IEnumerable<CategoryViewModel>>();
         }
     }

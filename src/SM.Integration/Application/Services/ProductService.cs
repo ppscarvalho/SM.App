@@ -4,6 +4,7 @@ using SM.Integration.Application.Interfaces;
 using SM.Integration.Application.ViewModels;
 using SM.MQ.Models;
 using SM.MQ.Models.Product;
+using SM.MQ.Models.Supplier;
 using SM.MQ.Operators;
 
 namespace SM.Integration.Application.Services
@@ -44,9 +45,9 @@ namespace SM.Integration.Application.Services
             return _mapper.Map<IEnumerable<ProductViewModel>>(result);
         }
 
-        public async Task<ResponseOut> AddProduct(ProductViewModel ProductViewModel)
+        public async Task<ResponseOut> AddProduct(ProductViewModel productViewModel)
         {
-            var Product = _mapper.Map<ResponseProductOut>(ProductViewModel);
+            var Product = _mapper.Map<ResponseProductOut>(productViewModel);
 
             var mapIn = new RequestIn
             {
@@ -59,9 +60,9 @@ namespace SM.Integration.Application.Services
             return response;
         }
 
-        public async Task<ResponseOut> UpdateProduct(ProductViewModel ProductViewModel)
+        public async Task<ResponseOut> UpdateProduct(ProductViewModel productViewModel)
         {
-            var Product = _mapper.Map<ResponseProductOut>(ProductViewModel);
+            var Product = _mapper.Map<ResponseProductOut>(productViewModel);
 
             var mapIn = new RequestIn
             {
@@ -72,6 +73,18 @@ namespace SM.Integration.Application.Services
 
             var response = await _publish.DoRPC<RequestIn, ResponseOut>(mapIn);
             return response;
+        }
+
+        public async Task<IEnumerable<SupplierViewModel>> GetAllSupplier()
+        {
+            var mapIn = new RequestIn
+            {
+                Host = "localhost",
+                Queue = "GetAllSupplier"
+            };
+
+            var result = await _publish.DoRPC<RequestIn, ResponseSupplierOut[]>(mapIn);
+            return _mapper.Map<IEnumerable<SupplierViewModel>>(result);
         }
     }
 }
