@@ -14,10 +14,7 @@ namespace SM.Integration.Application.AutoMapper
             CreateMap<CategoryViewModel, ResponseCategoryOut>().ReverseMap();
 
             // Product
-            CreateMap<ProductViewModel, ResponseProductOut>()
-                .ForMember(dest => dest.ResponseCategoryOut, act => act.MapFrom(src => src.CategoryViewModel))
-                .ForMember(dest => dest.ResponseSupplierOut, act => act.MapFrom(src => src.SupplierViewModel))
-                .ReverseMap();
+            CreateMap<ProductViewModel, ResponseProductOut>().ReverseMap();
 
             // Supplier
             CreateMap<SupplierViewModel, ResponseSupplierOut>().ReverseMap();

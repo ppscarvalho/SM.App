@@ -2,7 +2,7 @@
 
 using Polly;
 using SM.Integration.Application.AutoMapper;
-using SM.Integration.Application.Htpp.Category;
+using SM.Integration.Application.Htpp.Catalog;
 using SM.Integration.Application.Interfaces;
 using SM.Integration.Application.Services;
 using SM.MQ.Configuration;
@@ -16,10 +16,12 @@ const int timeWait = 30;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<HttpCategoryDelegatingHandler>();
 
-builder.Services.AddHttpClient<ICategoryClient, CategoryClient>()
-      .AddHttpMessageHandler<HttpCategoryDelegatingHandler>()
+//Catalog
+builder.Services.AddScoped<HttpCatalogDelegatingHandler>();
+
+builder.Services.AddHttpClient<ICatalogClient, CatalogClient>()
+      .AddHttpMessageHandler<HttpCatalogDelegatingHandler>()
       .AddPolicyHandler(PollyExtensions.GetRetryPolicy())
       .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(timeWait)));
 

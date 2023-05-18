@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using SM.MQ.Models.Category;
+using SM.MQ.Models.Supplier;
+using System.ComponentModel.DataAnnotations;
 
 namespace SM.Integration.Application.ViewModels
 {
@@ -13,10 +16,6 @@ namespace SM.Integration.Application.ViewModels
         [Display(Name = "Categoria")]
         [Required(ErrorMessage = "Categoria do Produto obrigatório.")]
         public Guid CategoryId { get; set; }
-
-        [Display(Name = "Nome")]
-        [Required(ErrorMessage = "Nome do Produto obrigatória.")]
-        public string? Name { get; set; }
 
         [Display(Name = "Descrição")]
         [Required(ErrorMessage = "Descrição do Produto obrigatória.")]
@@ -38,11 +37,13 @@ namespace SM.Integration.Application.ViewModels
         [Required(ErrorMessage = "Estoque do Produto obrigatório.")]
         public int Stock { get; set; }
 
+        [Display(Name = "Lucro Obtido")]
+        public decimal ProfitMade { get; set; }
+
         public ICollection<SupplierViewModel>? SupplierViewModels { get; set; }
         public ICollection<CategoryViewModel>? CategoryViewModels { get; set; }
 
-        public SupplierViewModel SupplierViewModel { get; set; }
-        public CategoryViewModel CategoryViewModel { get; set; }
-
+        public ResponseCategoryOut? ResponseCategoryOut { get; set; }
+        public ResponseSupplierOut? ResponseSupplierOut { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace SM.Integration.Application.Htpp.Category
+﻿namespace SM.Integration.Application.Htpp.Catalog
 {
-    public class HttpCategoryDelegatingHandler : DelegatingHandler
+    public class HttpCatalogDelegatingHandler : DelegatingHandler
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {

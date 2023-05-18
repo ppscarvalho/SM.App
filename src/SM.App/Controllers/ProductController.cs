@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SM.Integration.Application.Htpp.Category;
+using SM.Integration.Application.Htpp.Catalog;
 using SM.Integration.Application.Interfaces;
 using SM.Integration.Application.ViewModels;
 
@@ -8,11 +8,12 @@ namespace SM.App.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ICategoryClient _categoryClient;
-        public ProductController(IProductService productService, ICategoryClient categoryClient)
+        private readonly ICatalogClient _catalogClient;
+
+        public ProductController(IProductService productService, ICatalogClient catalogClient)
         {
             _productService = productService;
-            _categoryClient = categoryClient;
+            _catalogClient = catalogClient;
         }
 
 
@@ -20,21 +21,22 @@ namespace SM.App.Controllers
         public async Task<IActionResult> Index()
         {
             var product = await _productService.GetAllProduct();
-            return View(product);
+            return View(product.OrderBy(p => p?.ResponseSupplierOut?.CorporateName));
 
         }
 
         // GET: ProductController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return View();
+            var product = await _catalogClient.GetProductById(id);
+            return View(product);
         }
 
         // GET: ProductController/Create
         public async Task<IActionResult> Create()
         {
             var supplier = await _productService.GetAllSupplier();
-            var category = await _categoryClient.GetAllCategory();
+            var category = await _catalogClient.GetAllCategory();
             var product = new ProductViewModel
             {
                 SupplierViewModels = supplier.ToList(),
@@ -69,18 +71,34 @@ namespace SM.App.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            return View();
+            var product = await _productService.GetProductById(id);
+
+            var supplier = await _productService.GetAllSupplier();
+            var category = await _catalogClient.GetAllCategory();
+            product.SupplierViewModels = supplier.ToList();
+            product.CategoryViewModels = category.ToList();
+
+            return View(product);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(ProductViewModel productViewModel)
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View();
+
+                productViewModel.PurchaseValue /= 100.0M;
+                productViewModel.SaleValue /= 100.0M;
+                productViewModel.ProfitMargin /= 100.0M;
+
+                var result = await _productService.UpdateProduct(productViewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
