@@ -21,7 +21,7 @@ namespace SM.App.Controllers
         public async Task<IActionResult> Index()
         {
             var product = await _productService.GetAllProduct();
-            return View(product.OrderBy(p => p?.ResponseSupplierOut?.CorporateName));
+            return View(product.OrderBy(p => p?.ResponseSupplierOut?.FantasyName));
 
         }
 

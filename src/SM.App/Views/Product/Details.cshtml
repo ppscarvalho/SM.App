@@ -10,70 +10,84 @@
                 <div class="card-header">
                     <h3 class="card-title">Detalhes de Produto</h3>
                 </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label asp-for="Id" class="col-sm-2 col-form-label">Id</label>
-                            <div class="col-sm-10">
-                                @Html.DisplayFor(model => model.Id)
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="Id" class="control-label">Id</label>
+                                <span class="form-control">@Html.DisplayFor(model => model.Id)</span>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label asp-for="SupplierId" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                @Html.DisplayFor(model => model.ResponseSupplierOut.CorporateName)
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="SupplierId" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.ResponseSupplierOut.CorporateName)</span>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label asp-for="CategoryId" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                            @Html.DisplayFor(model => model.ResponseCategoryOut.Description)
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="CategoryId" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.ResponseCategoryOut.Description)</span>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                @Html.DisplayFor(model => model.Description)
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.Description)</span>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label asp-for="PurchaseValue" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-4">
-                                @Html.DisplayFor(model => model.PurchaseValue)
-                            </div>
-                        </div>
-
-                    <div class="form-group row">
-                        <label asp-for="ProfitMargin" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-4">
-                            @Html.DisplayFor(model => model.ProfitMargin)
-                        </div>
                     </div>
 
-                        <div class="form-group row">
-                            <label asp-for="SaleValue" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-4">
-                                @Html.DisplayFor(model => model.SaleValue)
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="PurchaseValue" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.PurchaseValue)
+                                </span>
                             </div>
                         </div>
 
-                    <div class="form-group row">
-                        <label asp-for="Stock" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-4">
-                            @Html.DisplayFor(model => model.Stock)
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="ProfitMargin" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.ProfitMargin)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="SaleValue" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.SaleValue)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="Stock" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.Stock)
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
+                </div>
+
+                <!-- /.card-body -->
+                <div class="card-footer">
                     <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">
                         <i class="bi bi-pencil-square btn btn-primary" aria-hidden="true" title="Editar"></i>
                     </a>
                     <a asp-action="Index" class="btn btn-default float-right">Voltar</a>
-                    </div>
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>

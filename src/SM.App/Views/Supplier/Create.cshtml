@@ -1,0 +1,146 @@
+﻿@model SupplierViewModel
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Horizontal Form -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Cadastro de Formecedor</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <form asp-controller="Supplier" asp-action="Create" class="form-horizontal" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card-body">
+                        <div class="form-group d-none">
+                            <label asp-for="Id" class="control-label"></label>
+                            <input asp-for="Id" class="form-control" />
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="CorporateName" class="control-label"></label>
+                                    <input asp-for="CorporateName" class="form-control" />
+                                    <span asp-validation-for="CorporateName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="FantasyName" class="control-label"></label>
+                                    <input asp-for="FantasyName" class="form-control" />
+                                    <span asp-validation-for="FantasyName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="NRLE" class="control-label"></label>
+                                    <input asp-for="NRLE" class="form-control" />
+                                    <span asp-validation-for="NRLE" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="StateRegistration" class="control-label"></label>
+                                    <input asp-for="StateRegistration" class="form-control" />
+                                    <span asp-validation-for="StateRegistration" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="CellPhone" class="control-label"></label>
+                                    <input asp-for="CellPhone" class="form-control" />
+                                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="EmailAddress" class="control-label"></label>
+                                    <input asp-for="EmailAddress" class="form-control" />
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="PublicPlace" class="control-label"></label>
+                                    <input asp-for="PublicPlace" class="form-control" />
+                                    <span asp-validation-for="PublicPlace" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="District" class="control-label"></label>
+                                    <input asp-for="District" class="form-control" />
+                                    <span asp-validation-for="District" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="City" class="control-label"></label>
+                                    <input asp-for="City" class="form-control" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="ZipCode" class="control-label"></label>
+                                    <input asp-for="ZipCode" class="form-control" />
+                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="State" class="control-label"></label>
+                                    <select asp-for="State" class="form-control" asp-items="@(new SelectList(Model.States, "UF", "Description"))">
+                                        <option></option>
+                                    </select>
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info">Salvar</button>
+                        <a asp-action="Index" class="btn btn-default float-right">Voltar</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#NRLE').setMask({ mask: '99.999.999/9999-99'});
+            $('#ZipCode').setMask({ mask: '99999-999'});
+            $('#CellPhone').setMask({ mask: '(99) 99999-9999'});
+            $('#StateRegistration').setMask({ mask: '99-999999-9' });
+        });
+    </script>
+}

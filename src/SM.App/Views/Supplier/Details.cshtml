@@ -1,0 +1,133 @@
+﻿@model SupplierViewModel
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Horizontal Form -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Detalhes de Fornecedor</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="Id" class="control-label">Id</label>
+                                <span class="form-control">@Html.DisplayFor(model => model.Id)</span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="CorporateName" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.CorporateName)</span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="FantasyName" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.FantasyName)</span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="NRLE" class="control-label"></label>
+                                <span class="form-control">@Html.DisplayFor(model => model.NRLE)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="StateRegistration" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.StateRegistration)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="CellPhone" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.CellPhone)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="EmailAddress" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.EmailAddress)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label asp-for="PublicPlace" class="control-label"></label>
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.PublicPlace)
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label asp-for="District" class="control-label"></label>
+                            <div class="form-group">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.District)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label asp-for="City" class="control-label"></label>
+                            <div class="form-group">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.City)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label asp-for="ZipCode" class="control-label"></label>
+                            <div class="form-group">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.ZipCode)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label asp-for="State" class="control-label"></label>
+                            <div class="form-group">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.State)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@Model.Id">
+                        <i class="bi bi-pencil-square btn btn-primary" aria-hidden="true" title="Editar"></i>
+                    </a>
+                    <a asp-action="Index" class="btn btn-default float-right">Voltar</a>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+</div>

@@ -3,6 +3,7 @@
 using Polly;
 using SM.Integration.Application.AutoMapper;
 using SM.Integration.Application.Htpp.Catalog;
+using SM.Integration.Application.Htpp.People;
 using SM.Integration.Application.Interfaces;
 using SM.Integration.Application.Services;
 using SM.MQ.Configuration;
@@ -19,9 +20,15 @@ builder.Services.AddControllersWithViews();
 
 //Catalog
 builder.Services.AddScoped<HttpCatalogDelegatingHandler>();
+builder.Services.AddScoped<HttpPeopleDelegatingHandler>();
 
 builder.Services.AddHttpClient<ICatalogClient, CatalogClient>()
       .AddHttpMessageHandler<HttpCatalogDelegatingHandler>()
+      .AddPolicyHandler(PollyExtensions.GetRetryPolicy())
+      .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(timeWait)));
+
+builder.Services.AddHttpClient<IPeopleClient, PeopleClient>()
+      .AddHttpMessageHandler<HttpPeopleDelegatingHandler>()
       .AddPolicyHandler(PollyExtensions.GetRetryPolicy())
       .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(timeWait)));
 
@@ -30,6 +37,7 @@ builder.Services.Configure<APIsOptions>(builder.Configuration.GetSection(nameof(
 // Service
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 var builderMQ = new BuilderBus(builder.Configuration["RabbitMq:ConnectionString"])
 {
@@ -73,5 +81,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHealthChecks("/healthz");
 
 app.Run();
