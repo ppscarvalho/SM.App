@@ -51,7 +51,6 @@
                                 <div class="form-group">
                                     <label asp-for="StateRegistration" class="control-label"></label>
                                     <input asp-for="StateRegistration" class="form-control" />
-                                    <span asp-validation-for="StateRegistration" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -63,14 +62,12 @@
                                 <div class="form-group">
                                     <label asp-for="CellPhone" class="control-label"></label>
                                     <input asp-for="CellPhone" class="form-control" />
-                                    <span asp-validation-for="CellPhone" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label asp-for="EmailAddress" class="control-label"></label>
                                     <input asp-for="EmailAddress" class="form-control" />
-                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -79,7 +76,6 @@
                                 <div class="form-group">
                                     <label asp-for="PublicPlace" class="control-label"></label>
                                     <input asp-for="PublicPlace" class="form-control" />
-                                    <span asp-validation-for="PublicPlace" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -87,10 +83,8 @@
                                 <div class="form-group">
                                     <label asp-for="District" class="control-label"></label>
                                     <input asp-for="District" class="form-control" />
-                                    <span asp-validation-for="District" class="text-danger"></span>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -99,14 +93,12 @@
                                 <div class="form-group">
                                     <label asp-for="City" class="control-label"></label>
                                     <input asp-for="City" class="form-control" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label asp-for="ZipCode" class="control-label"></label>
                                     <input asp-for="ZipCode" class="form-control" />
-                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -115,7 +107,6 @@
                                     <select asp-for="State" class="form-control" asp-items="@(new SelectList(Model.States, "UF", "Description"))">
                                         <option></option>
                                     </select>
-                                    <span asp-validation-for="State" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

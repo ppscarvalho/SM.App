@@ -38,6 +38,7 @@ builder.Services.Configure<APIsOptions>(builder.Configuration.GetSection(nameof(
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var builderMQ = new BuilderBus(builder.Configuration["RabbitMq:ConnectionString"])
 {

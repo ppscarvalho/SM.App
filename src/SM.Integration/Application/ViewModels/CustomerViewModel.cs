@@ -2,22 +2,16 @@
 
 namespace SM.Integration.Application.ViewModels
 {
-    public class SupplierViewModel
+    public class CustomerViewModel
     {
         public Guid Id { get; set; }
-        [Display(Name = "Razão Social")]
-        [Required(ErrorMessage = "Razão Social é obrigatória.")]
-        public string? CorporateName { get; set; }
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Nome é obrigatório.")]
+        public string? FirstName { get; set; }
 
-        [Display(Name = "Nome de Fantasia")]
-        [Required(ErrorMessage = "Nome fantasia é obritório.")]
-        public string? FantasyName { get; set; }
-
-        [Display(Name = "CNPJ")]
-        public string? NRLE { get; set; }
-
-        [Display(Name = "Insc. Estadual")]
-        public string? StateRegistration { get; set; }
+        [Display(Name = "Sobrenome")]
+        [Required(ErrorMessage = "Sobrenome fantasia é obritório.")]
+        public string? LastName { get; set; }
 
         [Display(Name = "Celular")]
         public string? CellPhone { get; set; }

@@ -8,5 +8,10 @@ namespace SM.Integration.Application.Htpp.People
         //Supplier
         Task<IEnumerable<SupplierViewModel>> GetAllSupplier();
         Task<SupplierViewModel> GetSupplierById(Guid id);
+
+        //Customer
+        Task<IEnumerable<CustomerViewModel>> GetAllCustomer();
+        Task<CustomerViewModel> GetCustomerById(Guid id);
+
     }
 }

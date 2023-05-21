@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SM.Integration.Application.ViewModels;
 using SM.MQ.Models.Category;
+using SM.MQ.Models.Customer;
 using SM.MQ.Models.Product;
 using SM.MQ.Models.Supplier;
 
@@ -18,6 +19,10 @@ namespace SM.Integration.Application.AutoMapper
 
             // Supplier
             CreateMap<SupplierViewModel, ResponseSupplierOut>().ReverseMap();
+
+            // Customer
+            CreateMap<CustomerViewModel, ResponseCustomerOut>().ReverseMap();
+
         }
     }
 }

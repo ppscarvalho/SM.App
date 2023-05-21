@@ -1,4 +1,4 @@
-﻿@model SupplierViewModel
+﻿@model CustomerViewModel
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -8,12 +8,12 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Cadastro de Formecedor</h3>
+                    <h3 class="card-title">Cadastro de Cliente</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
 
-                <form asp-controller="Supplier" asp-action="Create" class="form-horizontal" method="post">
+                <form asp-controller="Customer" asp-action="Create" class="form-horizontal" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="card-body">
                         <div class="form-group d-none">
@@ -26,37 +26,19 @@
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label asp-for="CorporateName" class="control-label"></label>
-                                    <input asp-for="CorporateName" class="form-control" />
-                                    <span asp-validation-for="CorporateName" class="text-danger"></span>
+                                    <label asp-for="FirstName" class="control-label"></label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label asp-for="FantasyName" class="control-label"></label>
-                                    <input asp-for="FantasyName" class="form-control" />
-                                    <span asp-validation-for="FantasyName" class="text-danger"></span>
+                                    <label asp-for="LastName" class="control-label"></label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label asp-for="NRLE" class="control-label"></label>
-                                    <input asp-for="NRLE" class="form-control" />
-                                    <span asp-validation-for="NRLE" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label asp-for="StateRegistration" class="control-label"></label>
-                                    <input asp-for="StateRegistration" class="form-control" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
@@ -71,6 +53,9 @@
                                 </div>
                             </div>
 
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
@@ -86,9 +71,6 @@
                                 </div>
                             </div>
 
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
@@ -96,12 +78,16 @@
                                     <input asp-for="City" class="form-control" />
                                 </div>
                             </div>
+
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label asp-for="ZipCode" class="control-label"></label>
                                     <input asp-for="ZipCode" class="form-control" />
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label asp-for="State" class="control-label"></label>
@@ -129,10 +115,8 @@
 
     <script>
         $(document).ready(function () {
-            $('#NRLE').setMask({ mask: '99.999.999/9999-99'});
             $('#ZipCode').setMask({ mask: '99999-999'});
             $('#CellPhone').setMask({ mask: '(99) 99999-9999'});
-            $('#StateRegistration').setMask({ mask: '99-999999-9' });
         });
     </script>
 }
