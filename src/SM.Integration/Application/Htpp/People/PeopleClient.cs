@@ -6,7 +6,6 @@ using SM.Util.Options;
 
 namespace SM.Integration.Application.Htpp.People
 {
-
     public class PeopleClient : ApiClientBase, IPeopleClient
     {
         private readonly APIsOptions _apisOptions;

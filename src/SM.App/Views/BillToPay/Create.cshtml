@@ -1,0 +1,89 @@
+﻿@model BillToPayViewModel
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Horizontal Form -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Cadastro de Contas a Pagar</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form asp-controller="BillToPay" asp-action="Create" class="form-horizontal" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="card-body">
+                        <div class="form-group row d-none">
+                            <label asp-for="Id" class="col-sm-2 col-form-label">Id</label>
+                            <div class="col-sm-10">
+                                <input asp-for="Id" class="form-control" placeholder="Id">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="SupplierId" class="control-label"></label>
+                                    <select asp-for="SupplierId" class="form-control" asp-items="@(new SelectList(Model.SupplierViewModels, "Id", "CorporateName"))">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <input asp-for="Description" class="form-control" placeholder="Descrição">
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label asp-for="DueDate" class="control-label"></label>
+                                    <input asp-for="DueDate" class="form-control" placeholder="Data de Vencimento">
+                                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label asp-for="Value" class="control-label"></label>
+                                    <input asp-for="Value" class="form-control" placeholder="Valor">
+                                    <span asp-validation-for="Value" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info">Salvar</button>
+                        <a asp-action="Index" class="btn btn-default float-right">Voltar</a>
+                    </div>
+                    <!-- /.card-footer -->
+                </form>
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $('#DueDate').setMask({ mask: "99/99/9999" });
+            $('#Value').setMask({ mask: '99.999.999.999.999', type: 'reverse' });
+
+        });
+    </script>
+}

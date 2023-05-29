@@ -16,13 +16,11 @@ namespace SM.App.Controllers
             _catalogClient = catalogClient;
         }
 
-
         // GET: ProductController
         public async Task<IActionResult> Index()
         {
             var product = await _productService.GetAllProduct();
             return View(product.OrderBy(p => p?.ResponseSupplierOut?.FantasyName));
-
         }
 
         // GET: ProductController/Details/5

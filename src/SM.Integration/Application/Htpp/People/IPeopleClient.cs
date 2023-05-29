@@ -12,6 +12,5 @@ namespace SM.Integration.Application.Htpp.People
         //Customer
         Task<IEnumerable<CustomerViewModel>> GetAllCustomer();
         Task<CustomerViewModel> GetCustomerById(Guid id);
-
     }
 }

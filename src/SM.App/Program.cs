@@ -3,6 +3,7 @@
 using Polly;
 using SM.Integration.Application.AutoMapper;
 using SM.Integration.Application.Htpp.Catalog;
+using SM.Integration.Application.Htpp.Financial;
 using SM.Integration.Application.Htpp.People;
 using SM.Integration.Application.Interfaces;
 using SM.Integration.Application.Services;
@@ -21,6 +22,7 @@ builder.Services.AddControllersWithViews();
 //Catalog
 builder.Services.AddScoped<HttpCatalogDelegatingHandler>();
 builder.Services.AddScoped<HttpPeopleDelegatingHandler>();
+builder.Services.AddScoped<HttpFinancialDelegatingHandler>();
 
 builder.Services.AddHttpClient<ICatalogClient, CatalogClient>()
       .AddHttpMessageHandler<HttpCatalogDelegatingHandler>()
@@ -32,6 +34,11 @@ builder.Services.AddHttpClient<IPeopleClient, PeopleClient>()
       .AddPolicyHandler(PollyExtensions.GetRetryPolicy())
       .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(timeWait)));
 
+builder.Services.AddHttpClient<IFinancialClient, FinancialClient>()
+      .AddHttpMessageHandler<HttpFinancialDelegatingHandler>()
+      .AddPolicyHandler(PollyExtensions.GetRetryPolicy())
+      .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(2, TimeSpan.FromSeconds(timeWait)));
+
 builder.Services.Configure<APIsOptions>(builder.Configuration.GetSection(nameof(APIsOptions)));
 
 // Service
@@ -39,6 +46,8 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IBillToPayService, BillToPayService>();
+builder.Services.AddScoped<IAccountReceivableService, AccountReceivableService>();
 
 var builderMQ = new BuilderBus(builder.Configuration["RabbitMq:ConnectionString"])
 {
